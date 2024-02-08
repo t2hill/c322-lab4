@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <label>Type:</label>
+    <input id="type"/>
+    <button onclick="search()">Search</button>
+    <br/>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody id="searchResult">
+
+        </tbody>
+    </table>
+
+    <script>
+        let ducks = [
+            { id: 1, type: "Mallard" },
+            { id: 2, type: "RedHead" },
+            { id: 3, type: "Decoy" },
+            { id: 4, type: "RedHead" },
+            { id: 5, type: "RedHead" },
+            { id: 6, type: "Mallard" },
+        ]
+        function search() {
+            let duckType = document.getElementById("type").value;
+            let table = document.getElementById("searchResult");
+            table.innerHTML = "";
+            for (let duck of ducks) {
+                if (!duckType || duck.type.toLowerCase() == duckType.toLowerCase()) {
+                    let row = document.createElement("tr");
+                    let cell1 = document.createElement("td");
+                    let cell2 = document.createElement("td");
+                    let id = document.createTextNode(duck.id);
+                    let type = document.createTextNode(duck.type);
+                    cell2.appendChild(type);
+                    cell1.appendChild(id);
+                    row.appendChild(cell1);
+                    row.appendChild(cell2)
+                    table.appendChild(row);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
